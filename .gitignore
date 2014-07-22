@@ -1,2 +1,4 @@
 # ignore certain files
 gitcmd.lnk
+
+*.swp
