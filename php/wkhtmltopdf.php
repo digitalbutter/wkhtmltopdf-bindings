@@ -175,7 +175,11 @@
 		 * Constructor: initialize command line and reserve temporary file.
 		 */
 		public function __construct(){
-			$this->cmd=self::_getCMD();
+			try {
+				$this->cmd=self::_getCMD();
+			} catch (Exception $e) {
+
+			}
 		}
 		/**
 		 * In case where platform detection fails (or you want to disable it), this function is able to let you use your own path to the executable.
