@@ -333,21 +333,27 @@
 			$this->status=$this->pdf['stderr'];
 			$this->pdf=$this->pdf['stdout'];
 			if($this->tmp!='')unlink($this->tmp);
-			switch($this->pdf['return']){
-				case 7:
-					self::_retError('WKPDF system error 7: malformed executable.',$this->pdf);
-					return false;
-				case 3:
-					self::_retError('WKPDF error 401: unauthorized.',$this->pdf);
-					return false;
-				case 2:
-					self::_retError('WKPDF error 404: file not found.',$this->pdf);
-					return false;
-				case 0:
-					return true;
-				default:
-					self::_retError('WKPDF error '.$this->pdf['return'].'.',$this->pdf);
-					return false;
+
+
+			if ( isset($this->pdf['return'])){
+		
+
+				switch($this->pdf['return']){
+					case 7:
+						self::_retError('WKPDF system error 7: malformed executable.',$this->pdf);
+						return false;
+					case 3:
+						self::_retError('WKPDF error 401: unauthorized.',$this->pdf);
+						return false;
+					case 2:
+						self::_retError('WKPDF error 404: file not found.',$this->pdf);
+						return false;
+					case 0:
+						return true;
+					default:
+						self::_retError('WKPDF error '.$this->pdf['return'].'.',$this->pdf);
+						return false;
+				}
 			}
 		}
 		/**
